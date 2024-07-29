@@ -2,8 +2,19 @@ I} Retrieval of Nucleotide from Genbank
 
 1) Visit  https://ncbi.nlm.nih.gov/
 2) Select nucleotide and search for collagen
-3) Select A.suum collagen gene, 3' end at 8number
+3) Select A.suum collagen gene, 3' end at 8 number
 4) Click on FASTA
 5) Copy all and click on run BLAST on R.H.S
 6) paste the copied text in box
-7) 
+7) Click on Blast
+
+II) Sequence similarity search using BLASTN
+
+1) Visit  https://ncbi.nlm.nih.gov/
+2) Select protein and search for (COLLAGEN) AND "Homo sapiens"
+3) Select collagen, partial [Homo sapiens] at 1 number
+4) Click on FASTA
+5) Copy all and click on run BLAST on R.H.S
+6) paste the copied text in box
+7) Click on Blast
+
