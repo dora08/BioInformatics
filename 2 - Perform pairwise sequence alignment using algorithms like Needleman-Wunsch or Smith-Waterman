@@ -1,1 +1,236 @@
+link: https://colab.research.google.com/drive/1ygM7WT5W7Y2jFcBr9NLYh1CiYhE_D7GO?usp=sharing#scrollTo=1eHe3pQ2syYF
+
+
+pip install Bio
+
+from Bio import pairwise2
+
+pip install pairwise2
+
+from Bio import Align
+aligner = Align.PairwiseAligner()
+
+aligner = Align.PairwiseAligner(match_score=1.0)
+
+aligner.match_score = 1.0
+
+target = "GAACT"
+query = "GAT"
+score = aligner.score(target, query)
+score
+
+alignments = aligner.align(target, query)
+alignment = alignments[0]
+alignment
+
+for alignment in alignments:
+    print(alignment)
+
+alignment.score
+
+alignment.target
+
+alignment.query
+
+alignment = alignments[0]
+alignment.coordinates
+
+len(alignment)
+
+alignment.length
+
+alignment = alignments[1]
+print(alignment)
+
+alignment.aligned
+
+aligner.mode = "global"
+aligner.mismatch_score = -10
+alignments = aligner.align("AAACAAA", "AAAGAAA")
+len(alignments)
+
+print(alignments[0])
+
+alignments[0].aligned
+
+print(alignments[1])
+
+alignments[1].aligned
+
+aligner.mode = "local"
+aligner.open_gap_score = -1
+aligner.extend_gap_score = 0
+chromosome = "AAAAAAAACCCCCCCAAAAAAAAAAAGGGGGGAAAAAAAA"
+transcript = "CCCCCCCGGGGGG"
+alignments1 = aligner.align(chromosome, transcript)
+len(alignments1)
+
+alignment1 = alignments1[0]
+print(alignment1)
+
+sequence = "CCCCGGGG"
+alignments2 = aligner.align(transcript, sequence)
+len(alignments2)
+
+alignment2 = alignments2[0]
+print(alignment2)
+
+mapped_alignment = alignment1.map(alignment2)
+print(mapped_alignment)
+
+format(mapped_alignment, "psl")
+
+from Bio.Seq import Seq
+alignment1.target = Seq(None, len(alignment1.target))
+alignment1.query = Seq(None, len(alignment1.query))
+alignment2.target = Seq(None, len(alignment2.target))
+alignment2.query = Seq(None, len(alignment2.query))
+mapped_alignment = alignment1.map(alignment2)
+format(mapped_alignment, "psl")
+
+aligner.mode = "local"
+target = "AGAACTC"
+query = "GAACT"
+score = aligner.score(target, query)
+print(score)
+alignments = aligner.align(target, query)
+for alignment in alignments:
+    print(alignment)
+
+from Bio import Align
+aligner = Align.PairwiseAligner(match_score=1.0, mode="local")
+print(aligner)
+
+aligner.algorithm
+
+from Bio import Align
+aligner = Align.PairwiseAligner()
+aligner.match_score
+
+score = aligner.score("ACGT", "ACAT")
+print(score)
+
+aligner.match_score = 1.0
+aligner.mismatch_score = -2.0
+aligner.gap_score = -2.5
+score = aligner.score("ACGT", "ACAT")
+print(score)
+
+import numpy as np
+def nw(x, y, match = 1, mismatch = 1, gap = 1):
+    nx = len(x)
+    ny = len(y)
+    # Optimal score at each possible pair of characters.
+    F = np.zeros((nx + 1, ny + 1))
+    F[:,0] = np.linspace(0, -nx * gap, nx + 1)
+    F[0,:] = np.linspace(0, -ny * gap, ny + 1)
+    # Pointers to trace through an optimal aligment.
+    P = np.zeros((nx + 1, ny + 1))
+    P[:,0] = 3
+    P[0,:] = 4
+    # Temporary scores.
+    t = np.zeros(3)
+    for i in range(nx):
+        for j in range(ny):
+            if x[i] == y[j]:
+                t[0] = F[i,j] + match
+            else:
+                t[0] = F[i,j] - mismatch
+            t[1] = F[i,j+1] - gap
+            t[2] = F[i+1,j] - gap
+            tmax = np.max(t)
+            F[i+1,j+1] = tmax
+            if t[0] == tmax:
+                P[i+1,j+1] += 2
+            if t[1] == tmax:
+                P[i+1,j+1] += 3
+            if t[2] == tmax:
+                P[i+1,j+1] += 4
+    # Trace through an optimal alignment.
+    i = nx
+    j = ny
+    rx = []
+    ry = []
+    while i > 0 or j > 0:
+        if P[i,j] in [2, 5, 6, 9]:
+            rx.append(x[i-1])
+            ry.append(y[j-1])
+            i -= 1
+            j -= 1
+        elif P[i,j] in [3, 5, 7, 9]:
+            rx.append(x[i-1])
+            ry.append('-')
+            i -= 1
+        elif P[i,j] in [4, 6, 7, 9]:
+            rx.append('-')
+            ry.append(y[j-1])
+            j -= 1
+             # Reverse the strings.
+    rx = ''.join(rx)[::-1]
+    ry = ''.join(ry)[::-1]
+    return '\n'.join([rx, ry])
+x = "GATTACA"
+y = "GCATGCU"
+print(nw(x, y))
+
+
+
+
+np.random.seed(42)
+x = np.random.choice(['A', 'T', 'G', 'C'], 50)
+y = np.random.choice(['A', 'T', 'G', 'C'], 50)
+print(nw(x, y, gap = 0))
+
+print(nw(x, y, gap = 1))
+
+print(nw(x, y, gap = 2))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
