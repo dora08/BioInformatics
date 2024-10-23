@@ -1,1 +1,64 @@
+https://colab.research.google.com/drive/1I69LSWq0W16RlNAmSfVfIBfqtHPBw3YL?usp=sharing
+
+seq1.txt ----> MGYYRKYAAVILATLSVFLH
+seq2.txt ----> MAGIFYFILFSFLFGICDAV
+
+
+
+def read_sequence(file_path):
+    """Read the protein sequence from a file."""
+    with open(file_path, 'r') as file:
+        return file.read().strip()
+def compare_sequences(seq1, seq2):
+    """Compare two sequences and print unmatched amino acids."""
+    len1 = len(seq1)
+    len2 = len(seq2)
+    flag = False
+    if len1 == len2:
+        for i in range(len1):
+            if seq1[i] != seq2[i]:
+                print(f"The unmatched amino acids are: {seq1[i]} {seq2[i]}")
+                flag = True
+        if not flag:
+            print("No unmatched amino acids are found.")
+    elif len1 > len2:
+        for i in range(len1):
+            if i < len2:
+                if seq1[i] != seq2[i]:
+                    print(f"The unmatched amino acids are: {seq1[i]} {seq2[i]}")
+                    flag = True
+            else:
+                print(f"The unmatched amino acids are: {seq1[i]}")
+                flag = True
+    else:
+        for i in range(len2):
+            if i < len1:
+                if seq1[i] != seq2[i]:
+                    print(f"The unmatched amino acids are: {seq1[i]} {seq2[i]}")
+                    flag = True
+            else:
+                print(f"The unmatched amino acids are: {seq2[i]}")
+                flag = True
+    if not flag:
+        print("No unmatched amino acids are found.")
+def main():
+    try:
+        # Read sequences from files
+        seq1 = read_sequence("Seq 1.txt")
+        seq2 = read_sequence("Seq 2.txt")
+        # Print sequences
+        print("The first Sequence Starts here:")
+        print(seq1)
+        print("The second Sequence Starts here:")
+        print(seq2)
+        # Compare sequences
+        compare_sequences(seq1, seq2)
+    except Exception as e:
+        print(f"An error occurred: {e}")
+if __name__ == "__main__":
+    main()
+
+
+
+
 
