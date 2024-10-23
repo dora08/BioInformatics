@@ -1,1 +1,68 @@
+#a. Conduct a blastp search on a given protein& to  identify the amino acid, which is more often repeated.
 
+# Define the main function
+def main():
+    try:
+        # Open the file for reading
+        with open("/content/seq1.txt.txt", "r") as file:
+            # Read the entire content of the file
+            content = file.read()
+        # Define the character array
+        arr = ['G', 'A', 'L', 'M', None, 'S', 'N', 'D', 'B', 'P', 'V', 'I', 'C', 'T', 'Q', 'E', 'Z', 'R', 'Y', 'H', 'K', 'F']
+        # Print the content of the file
+        print("\n The sequence is this:\n")
+        print(content)
+        # Initialize the flag and count
+        flag = 0
+        # Iterate over the character array
+        for char in arr:
+            if char is not None:
+                count = content.count(char)
+                if count > 0:
+                    flag = 1
+                print(f"The number of times {char} repeated are:\n{count}")
+        # Check if no characters were found
+        if flag == 0:
+            print("No repetition.")
+    except Exception as e:
+        # Print any exception that occurs
+        print(f"An error occurred: {e}")
+# Execute the main function
+if __name__ == "__main__":
+    main()
+
+
+
+
+
+
+#b. Perform blastn search on a specified gene sequence & count the number of repetitions of each nucleotide in the
+# Define the main function
+def main():
+    try:
+        # Open the file for reading
+        with open("/content/seq2.txt.txt", "r") as file:
+            # Read the entire content of the file
+            content = file.read()
+        # Define the character array
+        arr = ['A', 'C', 'T', 'G']
+        # Print the content of the file
+        print("\n The sequence is: ")
+        print(content)
+        # Initialize the flag
+        flag = 0
+        # Iterate over the character array
+        for char in arr:
+            count = content.count(char)
+            if count > 0:
+                flag = 1
+            print(f"The number of times {char} repeated are:\n{count}")
+        # Check if no characters were found
+        if flag == 0:
+            print("No repetition.")
+    except Exception as e:
+        # Print any exception that occurs
+        print(f"An error occurred: {e}")
+# Execute the main function
+if __name__ == "__main__":
+    main()
