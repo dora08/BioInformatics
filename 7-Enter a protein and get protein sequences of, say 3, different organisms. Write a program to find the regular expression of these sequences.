@@ -1,0 +1,55 @@
+https://colab.research.google.com/drive/1_JgpYiP3c5DXFzBSNdAuwq4SWiISrQ68?usp=sharing
+
+seq 4---> MSSRSARPGGPSGGGGYGPAGGAGRPGLPGGLGGGGPGGDTRTGPSDGAAGSGGLRGLGSNGAAARPGLPAGGAAGPGEARRGPGGGSGGPGGPGGAGGGAAGGGAGPGGGGPGGGSGSAGGGPGGVGGGPGGGGGRVGVAGGSRPG
+seq 5---> MDNPELKSPVSHLEETSSKPGVVSDDSSPQDPQETIQAQLLSEQQQFRRGLEKDEGIVHEDEEEAVASVKLEEAEEGDSQKEEEEVEVKEGDKQLTGEEEEEKEKVTPELEEEEGDKPQDEGEEEPKEEEGEEEPEDEEEEGDEEEP
+seq 6---> MGRAGAPGAPGAPGAPGPAGPPGPAGANGAPGPPGPPGPPGPPGAPGSPGADGPSGPAGQPGEAGSPGLQGPAGPAGPPGSPGADGAPGTPGPQGAPGEPGPAGAPGSPGSPGSPGKPGEQGPRGPPGIPGLPGAPGSPGPQGAPGPPGP
+
+
+
+
+# Define the main function
+def main():
+    try:
+        # Open and read the contents of the files
+        with open("/content/seq4.txt.txt", "r") as file1, \
+             open("/content/seq5.txt.txt", "r") as file2, \
+             open("/content/seq6.txt.txt", "r") as file3:
+            s1 = file1.read()
+            s2 = file2.read()
+            s3 = file3.read()
+        # Initialize flag and characters
+        flag = 0
+        len_s1 = len(s1)
+        # Loop through the lengths of the strings
+        for j in range(len_s1):
+            ch1 = s1[j] if j < len(s1) else '\0'
+            ch2 = s2[j] if j < len(s2) else '\0'
+            ch3 = s3[j] if j < len(s3) else '\0'
+            # Check for common character
+            if ch1 == ch2 and ch2 == ch3:
+                flag = 1
+                print(f"-{ch1}", end="")
+            # Check for uncommon characters
+            if ch1 != ch2 and ch2 != ch3:
+                if ch1 != ch3:
+                    flag = 1
+                    print("-X", end="")
+            # Check for mixed characters
+            if ch1 != ch2 and ch2 == ch3:
+                flag = 1
+                print(f"-[{ch1}{ch2}]", end="")
+            if ch1 != ch2 and ch1 == ch3:
+                flag = 1
+                print(f"-[{ch2}{ch3}]", end="")
+            if ch2 != ch3 and ch1 == ch2:
+                flag = 1
+                print(f"-[{ch1}{ch3}]", end="")
+        # Print a newline at the end of output
+        if flag:
+            print()
+    except Exception as e:
+        # Print any exception that occurs
+        print(f"An error occurred: {e}")
+# Execute the main function
+if __name__ == "__main__":
+    main()
