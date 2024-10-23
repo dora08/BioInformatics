@@ -1,0 +1,74 @@
+https://colab.research.google.com/drive/1M0UBcaS04Pjcj5AGH3yVqzpx1aQ1WNPL?usp=sharing
+
+
+pip install Bio
+
+
+from Bio import Entrez, SeqIO
+Entrez.email = "A.N.Other@example.com"
+
+
+
+# Download sequence record for genbank id KT220438
+# This is HA gene of Influenza A virus, strain A/NewJersey/NHRC_93219/2015(H3N2)
+handle = Entrez.efetch(db="nucleotide", id="KT220438", rettype="gb", retmode="text")
+record = SeqIO.read(handle, "genbank")
+handle.close()
+# The sequence record is now stored in the variable `record` and
+# we can print it to see what it contains
+print(record)
+
+
+print("- ID of the record:")
+print(record.id)
+print("\n- Brief description of the record:")
+print(record.description)
+print("\n- Annotations that come with the record (given as a python dictionary):")
+print(record.annotations)
+print("\n- The sequence in this record:")
+print(record.seq)
+
+
+
+# extract the sequence from the record
+DNA_seq = record.seq
+# translate into a protein sequence
+protein_seq = DNA_seq.translate()
+print(protein_seq)
+
+
+# you will need to import the appropriate modules for this to work
+from Bio import Entrez, SeqIO
+# always give Entrez your email
+Entrez.email = "A.N.Other@example.com"
+# download sequence record for genbank id FJ966082
+# This is HA gene of Influenza A virus, strain A/California/04/2009(H1N1)
+handle = Entrez.efetch(db="nucleotide", id="FJ966082", rettype="gb", retmode="text")
+record = SeqIO.read(handle, "genbank")
+handle.close()
+# print the record
+print(record)
+
+
+
+print(record.annotations['comment'])
+
+
+protein_seq = record.seq.translate()
+print("Protein sequence:")
+print(protein_seq)
+
+
+
+print(">", record.id, record.description)
+print(record.seq)
+
+
+def print_fasta(record):
+    print(">", record.id, record.description)
+    seq = record.seq
+    for i in range(0, len(seq), 60):
+        print(seq[i:i+60])
+print_fasta(record)
+
+
