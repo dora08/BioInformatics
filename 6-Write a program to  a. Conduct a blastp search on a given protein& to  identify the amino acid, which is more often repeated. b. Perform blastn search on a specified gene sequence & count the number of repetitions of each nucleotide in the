@@ -1,3 +1,9 @@
+https://colab.research.google.com/drive/1qKTgd_U_124U7C1cK-JPYY209PTNEEhC?usp=sharing
+
+seq1.txt ----> MGYYRKYAAVILATLSVFLH
+seq2.txt ----> MAGIFYFILFSFLFGICDAV
+
+
 #a. Conduct a blastp search on a given protein& to  identify the amino acid, which is more often repeated.
 
 # Define the main function
