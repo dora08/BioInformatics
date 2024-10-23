@@ -23,6 +23,161 @@ III) Sequence Similarity Search using BLASTP
 https://colab.research.google.com/drive/1ITbpATAMujq5tioWzjYqmP9kAfZMW6gB?usp=sharing#scrollTo=z2KpchsPW9ja
 
 
+pip install biopython
+
+
+from Bio.Seq import Seq
+dna = Seq("AATTCTAGGCCGTCCTGGCGATAAAGGTGAGCCAGGTAAACATGTGCCCGGAGTTGCACCACCAGGACCA"
+"CCAGGTCGACCGGGTGATATGGGACCACCTGGACCACCTGGGCCACCAGGCGAGAAAGGAAAACCTGGAA"
+"CAAAAGGCCCAATAGGACCACCGGGAGACCAAGGAAATCCAGGTATTTATATTCGTAGTTAATGCTTGAT"
+"TCGAGAATT")
+
+
+# Generate the complement or reverse complement
+print('Complement:',dna.complement())
+
+
+print('Reverse complement:', dna.reverse_complement())
+
+
+# Transcribe coding DNA to RNA
+rna = dna.transcribe()
+print('RNA:', rna)
+
+
+# Translate dna or rna to protein
+print('DNA to protein:',dna.translate())
+print('RNA to protein:',rna.translate())
+
+
+import random
+random.choices("HT", weights=[0.5,0.5],k=5)
+
+
+import random
+import numpy as np
+
+
+def generate_random_sequence(sequence_length, probability_distribution):
+    sequence = ""
+    for i in range(0,sequence_length):
+        sequence = sequence + random.choices(["A","C","G","T"], weights=probability_distribution,k=1)[0]
+    return sequence
+
+
+our_random_seq = generate_random_sequence(100, [0.25, 0.25, 0.25, 0.25])
+print(our_random_seq)
+
+
+from Bio.Seq import Seq
+my_dna = Seq("ATCGATGATAGGATA")
+type(my_dna)  # notice here that it is not a normal string object
+
+
+my_protein = Seq("KGLYQRGD")
+
+
+a_sub_sequence = my_dna[3:7]
+the_sequence_length = len(my_dna)
+print(the_sequence_length, a_sub_sequence)
+
+
+the_rev_comp = my_dna.reverse_complement()
+print(the_rev_comp)
+
+my_dna.transcribe()
+
+
+
+my_dna.translate()
+
+
+
+def verify(sequence):
+    '''This code verifies if a sequence is a DNA or RNA'''
+    # set the input sequence
+    seq = set(sequence)
+    # confirm if its elements is equal to the
+    # set of valid DNA bases
+    # Use a union method to ensure the sequence is
+    # verified if does not contain all the bases
+    if seq == {"A", "T", "C", "G"}.union(seq):
+        return "DNA"
+    elif seq == {"A", "U", "C", "G"}.union(seq):
+        return "RNA"
+    else:
+        return "Invalid sequence"
+seq1 = "ATGCAGCTGTGTTACGCGAT"
+seq2 = "UGGCGGAUAAGCGCA"
+seq3 = "TYHGGHHHHH"
+print(seq1 + " is " + verify(seq1))
+print(seq2 + " is " + verify(seq2))
+print(seq3 + " is " + verify(seq3))
+
+
+
+def verify(sequence):
+	'''This code verifies if a sequence is a DNA or RNA'''
+	# set the input sequence
+	seq = set(sequence)
+	# confirm if its elements is equal to
+	# the set of valid DNA bases
+	# Use a union method to ensure the
+	# sequence is verified if does not
+	# contain all the bases
+	if seq == {"A", "T", "C", "G"}.union(seq):
+		return "DNA"
+	elif seq == {"A", "U", "C", "G"}.union(seq):
+		return "RNA"
+	else:
+		return "Invalid sequence"
+def rev_comp_if(seq):
+	comp = []
+	if verify(seq) == "DNA":
+		for base in seq:
+			if base == "A":
+				comp.append("T")
+			elif base == "G":
+				comp.append("C")
+			elif base == "T":
+				comp.append("A")
+			elif base == "C":
+				comp.append("G")
+	elif verify(seq) == "RNA":
+		for base in seq:
+			if base == "U":
+				comp.append("A")
+			elif base == "G":
+				comp.append("C")
+			elif base == "A":
+				comp.append("U")
+			elif base == "C":
+				comp.append("G")
+	else:
+		return "Invalid Sequence"
+	# reverse the sequence
+	comp_rev = comp[::-1]
+	# convert list to string
+	comp_rev = "".join(comp_rev)
+	return comp_rev
+seq1 = "ATGCAGCTGTGTTACGCGAT"
+seq2 = "UGGCGGAUAAGCGCA"
+seq3 = "TYHGGHHHHH"
+print("The reverse complementary strand of " +
+	seq1 + " is " + rev_comp_if(seq1))
+print("The reverse complementary strand of " +
+	seq2 + " is " + rev_comp_if(seq2))
+print("The reverse complementary strand of " +
+	seq3 + " is " + rev_comp_if(seq3))
+
+
+
+from Bio.Seq import Seq
+messenger_rna = Seq("AUGGCCAUUGUAAUGGGCCGCUGAAAGGGUGCCCGAUAG")
+messenger_rna
+#Seq('AUGGCCAUUGUAAUGGGCCGCUGAAAGGGUGCCCGAUAG')
+messenger_rna.translate()
+#Seq('MAIVMGR*KGAR*')
 
 
 
