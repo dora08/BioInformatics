@@ -1,43 +1,57 @@
-link: https://colab.research.google.com/drive/1ygM7WT5W7Y2jFcBr9NLYh1CiYhE_D7GO?usp=sharing#scrollTo=1eHe3pQ2syYF
-
+https://colab.research.google.com/drive/1yLQnD3CCNjBeb7beHAwEfwZXTM8MdNIZ?usp=sharing
 
 pip install Bio
 
+
 from Bio import pairwise2
 
+
 pip install pairwise2
+
 
 from Bio import Align
 aligner = Align.PairwiseAligner()
 
+
 aligner = Align.PairwiseAligner(match_score=1.0)
 
+
 aligner.match_score = 1.0
+
 
 target = "GAACT"
 query = "GAT"
 score = aligner.score(target, query)
 score
 
+
 alignments = aligner.align(target, query)
 alignment = alignments[0]
 alignment
 
+
 for alignment in alignments:
     print(alignment)
 
+
 alignment.score
+
 
 alignment.target
 
+
 alignment.query
+
 
 alignment = alignments[0]
 alignment.coordinates
 
+
 len(alignment)
 
+
 alignment.length
+
 
 alignment = alignments[1]
 print(alignment)
@@ -49,13 +63,17 @@ aligner.mismatch_score = -10
 alignments = aligner.align("AAACAAA", "AAAGAAA")
 len(alignments)
 
+
 print(alignments[0])
 
+
 alignments[0].aligned
+
 
 print(alignments[1])
 
 alignments[1].aligned
+
 
 aligner.mode = "local"
 aligner.open_gap_score = -1
@@ -65,18 +83,23 @@ transcript = "CCCCCCCGGGGGG"
 alignments1 = aligner.align(chromosome, transcript)
 len(alignments1)
 
+
 alignment1 = alignments1[0]
 print(alignment1)
+
 
 sequence = "CCCCGGGG"
 alignments2 = aligner.align(transcript, sequence)
 len(alignments2)
 
+
 alignment2 = alignments2[0]
 print(alignment2)
 
+
 mapped_alignment = alignment1.map(alignment2)
 print(mapped_alignment)
+
 
 format(mapped_alignment, "psl")
 
@@ -88,6 +111,7 @@ alignment2.query = Seq(None, len(alignment2.query))
 mapped_alignment = alignment1.map(alignment2)
 format(mapped_alignment, "psl")
 
+
 aligner.mode = "local"
 target = "AGAACTC"
 query = "GAACT"
@@ -97,24 +121,30 @@ alignments = aligner.align(target, query)
 for alignment in alignments:
     print(alignment)
 
+
 from Bio import Align
 aligner = Align.PairwiseAligner(match_score=1.0, mode="local")
 print(aligner)
 
+
 aligner.algorithm
+
 
 from Bio import Align
 aligner = Align.PairwiseAligner()
 aligner.match_score
 
+
 score = aligner.score("ACGT", "ACAT")
 print(score)
+
 
 aligner.match_score = 1.0
 aligner.mismatch_score = -2.0
 aligner.gap_score = -2.5
 score = aligner.score("ACGT", "ACAT")
 print(score)
+
 
 import numpy as np
 def nw(x, y, match = 1, mismatch = 1, gap = 1):
@@ -181,7 +211,9 @@ x = np.random.choice(['A', 'T', 'G', 'C'], 50)
 y = np.random.choice(['A', 'T', 'G', 'C'], 50)
 print(nw(x, y, gap = 0))
 
+
 print(nw(x, y, gap = 1))
+
 
 print(nw(x, y, gap = 2))
 
