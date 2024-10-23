@@ -1,0 +1,63 @@
+https://colab.research.google.com/drive/1aRmlw9691w6YZvDwkLSm2gE7tLg18Bq4?usp=sharing
+
+
+seq1.txt ----> MGYYRKYAAVILATLSVFLH
+seq2.txt ----> MAGIFYFILFSFLFGICDAV
+
+
+
+def read_sequence(file_path):
+    """Read the protein sequence from a file."""
+    with open(file_path, 'r') as file:
+        return file.read().strip()
+def calculate_match_percentage(seq1, seq2):
+    """Calculate the percentage of pattern matching between two sequences."""
+    len1 = len(seq1)
+    len2 = len(seq2)
+    count = 0
+    if len1 == len2:
+        # Both sequences are of the same length
+        for i in range(len1):
+            if seq1[i] != seq2[i]:
+                count += 1
+        matching_percentage = ((len1 - count) * 100) / len1
+    elif len1 > len2:
+        # seq1 is longer than seq2
+        for i in range(len1):
+            if i < len2:
+                if seq1[i] != seq2[i]:
+                    count += 1
+            else:
+                count += 1
+        matching_percentage = ((len1 - count) * 100) / len1
+
+    else:
+        # seq2 is longer than seq1
+        for i in range(len2):
+            if i < len1:
+                if seq1[i] != seq2[i]:
+                    count += 1
+            else:
+                count += 1
+        matching_percentage = ((len2 - count) * 100) / len2
+    return matching_percentage
+def main():
+    try:
+        # Read sequences from files
+        seq1 = read_sequence("/content/seq1.txt.txt")
+        seq2 = read_sequence("/content/seq2.txt.txt")
+        # Print sequences
+        print("The first Sequence Starts here:")
+        print(seq1)
+        print("The second Sequence Starts here:")
+        print(seq2)
+        # Calculate and print the percentage of matching
+        matching_percentage = calculate_match_percentage(seq1, seq2)
+        print(f"The percentage of matching: {matching_percentage:.2f}%")
+    except Exception as e:
+        print(f"An error occurred: {e}")
+if __name__ == "__main__":
+    main()
+
+
+
