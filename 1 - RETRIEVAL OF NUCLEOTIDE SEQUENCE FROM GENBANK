@@ -207,3 +207,30 @@ messenger_rna
 # Translate the mRNA to a protein sequence
 messenger_rna.translate()
 
+
+
+
+Part I: Sequence Search with NCBI
+You used NCBI to search for DNA and protein sequences related to collagen. Then, you ran a similarity search using BLAST to find sequences similar to the ones you selected.
+Part II: Sequence Analysis with Python
+Create DNA Sequence: You created a DNA sequence and used BioPython to:
+
+Get its Complement (swaps A ↔ T, G ↔ C).
+Get its Reverse Complement (reverse of the complement).
+Transcribe DNA to RNA (replace T with U).
+Translate DNA/RNA to a protein.
+Random DNA Generation:
+
+Generated random "H" (heads) or "T" (tails).
+Created random DNA sequences with specified probabilities for each base (A, C, G, T).
+Sequence Checking and Conversion:
+
+Verified if a sequence is DNA or RNA.
+Created reverse complements for DNA/RNA.
+mRNA to Protein:
+
+Converted an mRNA sequence to a protein.
+Outputs:
+Complement, reverse complement, RNA, protein sequences.
+Random DNA sequence.
+Validation of sequences and reverse complements.
