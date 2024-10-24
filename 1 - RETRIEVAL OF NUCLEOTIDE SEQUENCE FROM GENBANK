@@ -28,7 +28,7 @@ II) Sequence similarity search using BLASTN
 
 III) Sequence Similarity Search using BLASTP
 
-https://colab.research.google.com/drive/1ITbpATAMujq5tioWzjYqmP9kAfZMW6gB?usp=sharing#scrollTo=z2KpchsPW9ja
+https://colab.research.google.com/drive/1xm4292R0nOTNQ6A1XxXORT3NObIf-VE5?usp=sharing
 
 
 pip install biopython
