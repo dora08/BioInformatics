@@ -221,45 +221,28 @@ print(nw(x, y, gap = 1))
 print(nw(x, y, gap = 2))
 
 
+Setup:
 
+You installed a bioinformatics tool called BioPython to compare DNA sequences.
+You used the Align tool to check how similar two DNA sequences are.
+Alignment:
 
+Alignment is about lining up DNA sequences to see how well they match.
+You tried two types:
+Global Alignment: Matches sequences from start to end, even if there are gaps or mismatches.
+Local Alignment: Finds the best matching part of sequences, ignoring the rest.
+Scoring:
 
+Scores are used to measure matches, mismatches, and gaps:
+A match adds points.
+A mismatch or a gap loses points.
+Custom Algorithm:
 
+You also made your own alignment method using an algorithm called Needleman-Wunsch.
+This method also looks for the best way to align DNA sequences by scoring matches and gaps.
+Random Sequences:
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+You tested alignment with random DNA sequences, adjusting the penalty for gaps.
 
 
 
