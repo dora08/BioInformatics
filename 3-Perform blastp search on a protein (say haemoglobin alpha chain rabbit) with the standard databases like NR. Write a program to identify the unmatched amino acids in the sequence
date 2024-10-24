@@ -83,6 +83,19 @@ if __name__ == "__main__":
 
 
 
+Purpose: This code reads two protein sequences from text files (seq1.txt and seq2.txt) and compares them to find any differences (unmatched amino acids).
 
+Steps:
+
+Reading Sequences:
+The read_sequence function opens the text files and reads the sequences, removing any extra spaces.
+Comparing Sequences:
+The compare_sequences function compares the sequences one amino acid at a time.
+If two sequences are of different lengths, it will still compare them until the shorter one ends.
+If there are unmatched amino acids, it prints them.
+Main Function:
+It reads the sequences from the files, displays them, and calls the comparison function.
+If there's an error (like if a file doesn't exist), it will display an error message.
+Output: It prints the sequences and shows any unmatched amino acids or says "No unmatched amino acids are found" if both sequences are identical.
 
 
