@@ -112,7 +112,6 @@ matrix = needleman_wunsch(seq1, seq2)
 # Prepare row and column names
 row_names = [''] + list(seq2)  # First row is empty, then sequence 2
 col_names = [''] + list(seq1)  # First column is empty, then sequence 1
-
 # Print scoring matrix with row and column names
 print("Scoring Matrix with Row and Column Names:")
 print_matrix(matrix, row_names, col_names)
