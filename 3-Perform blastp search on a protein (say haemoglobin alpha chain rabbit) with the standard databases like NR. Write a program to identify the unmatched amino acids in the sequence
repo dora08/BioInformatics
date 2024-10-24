@@ -2,6 +2,8 @@ https://colab.research.google.com/drive/1I69LSWq0W16RlNAmSfVfIBfqtHPBw3YL?usp=sh
 
 seq1.txt ----> MGYYRKYAAVILATLSVFLH
 seq2.txt ----> MAGIFYFILFSFLFGICDAV
+   (single code)
+
 
 def read_sequence(file_path):
     """Read the protein sequence from a file."""
